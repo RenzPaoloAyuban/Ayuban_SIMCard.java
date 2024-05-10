@@ -26,12 +26,12 @@ public class Ayuban_SIMCard {
                     continue;
                 }
 
-                if (phoneNumber.length() != 11) {
+                else if (phoneNumber.length() != 11) {
                     System.out.println("ERROR: Phone number should be 11 numbers.");
                     continue;
                 }
+                
                 else { 
-                    
                     
                     String prefix = phoneNumber.substring(2, 4);
                     
@@ -105,14 +105,13 @@ public class Ayuban_SIMCard {
                            }
                     }
                     
-                     }
-               }
+                }
+            }
 
-               else if (userInput == 2) {
+            else if (userInput == 2) {
                     programRunning = false;
-               }
+            }
         }
-
         sc.close();
     }
 }
