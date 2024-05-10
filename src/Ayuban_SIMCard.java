@@ -4,7 +4,7 @@ public class Ayuban_SIMCard {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Initialization of variables and for the while loop
+        // Initialization of variables and for the main while loop
         String phoneNumber;
         double loadAmount = 0;
         double cashPayment = 0;
@@ -12,7 +12,7 @@ public class Ayuban_SIMCard {
 
         // While programRunning's value is true, the program will loop repeatedly. If it becomes false, then the succeeding codes will not be executed
         while (programRunning) {
-            boolean loadSuccessful = true; //Initialization for second while loop
+            boolean loadSuccessful = true; //Initialization for the second while loop
             System.out.println("\n=== SIMPLE SIM CARD LOADING SYSTEM ===");
             System.out.println("[1] - Buy Regular Load");
             System.out.println("[2] - Exit");
@@ -42,10 +42,10 @@ public class Ayuban_SIMCard {
                 //Runs if the phone number requirements are satisfied
                 else { 
                     
-                    //Slicing phone number in its 3rd and 4th index
+                    //Slicing phone number in its 3rd and 4th index and stores it prefix variable
                     String prefix = phoneNumber.substring(2, 4);
                     
-                    //Checks if prefix are integers. An error will be displayed if not
+                    //Checks if prefix are all integers. An error will be displayed if not
                     if (!prefix.matches("\\d+")) {
                         System.out.println("ERROR: Phone number should be 11 numbers.");
                     } 
@@ -54,7 +54,7 @@ public class Ayuban_SIMCard {
                     else { 
                         int prefixInt = Integer.parseInt(prefix); //Converting prefix into an integer
 
-                        //Checks if the phone number falls under Globe/TM SIM Card
+                        //Checks if the phone number falls under Globe/TM SIM Card (0901 - 0950)
                         if (prefixInt >= 1 && prefixInt <= 50) {
                             
                             //Another while loop for loading section
@@ -63,7 +63,7 @@ public class Ayuban_SIMCard {
                                 System.out.print("Enter Load Amount: "); //Asks the user about the load amount
                                 loadAmount = sc.nextDouble();
                                 
-                                //An error will be displayed if the load amount does not fall with the given range
+                                //An error will be displayed if the load amount does not fall with the given range (15-150)
                                 if (loadAmount < 15 || loadAmount > 150) {
                                     System.out.println("ERROR: Please enter load amount from '15-150'");
                                     continue;
@@ -91,7 +91,7 @@ public class Ayuban_SIMCard {
                             }
                         }
                         
-                        //Checks if the phone number falls under Globe/TM SIM Card
+                        //Checks if the phone number falls under SMART/TM SIM Card (0951 - 0999)
                         else if (prefixInt >= 51 && prefixInt <= 99) {
                             
                             //Another while loop for loading section
@@ -100,7 +100,7 @@ public class Ayuban_SIMCard {
                                 System.out.print("Enter Load Amount: "); //Asks the user about the load amount
                                 loadAmount = sc.nextDouble();
         
-                                //An error will be displayed if the load amount does not fall with the given range
+                                //An error will be displayed if the load amount does not fall with the given range (15-150)
                                 if (loadAmount < 15 || loadAmount > 150) {
                                     System.out.println("ERROR: Please enter load amount from '15-150'");
                                     continue;
@@ -122,7 +122,7 @@ public class Ayuban_SIMCard {
                                     else {
                                         cashPayment -= loadAmount;
                                         System.out.println("Payment Successful\nYour change due is " + cashPayment);
-                                        loadSuccessful = false;
+                                        loadSuccessful = false; //Breaks the loop for loading section
                                     }
                                 }
                              }
