@@ -10,7 +10,7 @@ public class Ayuban_SIMCard {
         double cashPayment = 0;
         boolean programRunning = true;
 
-        // While programRunning's value is true, the program will loop repeatedly
+        // While programRunning's value is true, the program will loop repeatedly. If it becomes false, then the succeeding codes will not be executed
         while (programRunning) {
             boolean loadSuccessful = true; //Initialization for second while loop
             System.out.println("\n=== SIMPLE SIM CARD LOADING SYSTEM ===");
