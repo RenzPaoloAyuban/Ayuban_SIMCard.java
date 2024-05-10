@@ -140,7 +140,8 @@ public class Ayuban_SIMCard {
 
             //Breaks the programRunning loop, thus ending the program
             else if (userInput == 2) {
-                    programRunning = false;
+                System.out.println("THANK YOU! Good Bye...");
+                programRunning = false;
             }
         }
         sc.close(); //Closes the scanner
