@@ -6,10 +6,10 @@ public class Ayuban_SIMCard {
         String phoneNumber;
         double loadAmount = 0;
         double cashPayment = 0;
-        boolean loadSuccessful = false;
+        boolean programRunning = true;
 
-        while (!loadSuccessful) {
-            
+        while (programRunning) {
+            boolean loadSuccessful = true;
             System.out.println("\n=== SIMPLE SIM CARD LOADING SYSTEM ===");
             System.out.println("[1] - Buy Regular Load");
             System.out.println("[2] - Exit");
@@ -30,82 +30,89 @@ public class Ayuban_SIMCard {
                     System.out.println("ERROR: Phone number should be 11 numbers.");
                     continue;
                 }
-
-                String phoneNumberSIM = phoneNumber.substring(2, 4);
-
-                if ("00".contentEquals(phoneNumberSIM)) {
-                    System.out.println("ERROR: Unknown SIM Card");
-                    continue;
-                }
-
-                int prefix = Integer.parseInt(phoneNumber.substring(2, 4));
-                
-                if (prefix >= 1 && prefix <= 50) {
+                else { 
                     
-                    while (!loadSuccessful) {
-                        System.out.println("\nAvailable Product for GLOBE/TM");
-                        System.out.print("Enter Load Amount: ");
-                        loadAmount = sc.nextDouble();
+                    
+                    String prefix = phoneNumber.substring(2, 4);
+                    
+                    if (!prefix.matches("\\d+")) {
+                        System.out.println("ERROR: Phone number should be 11 numbers.");
+                    } 
+                    else { 
+                        int prefixInt = Integer.parseInt(prefix);
 
-                        if (loadAmount < 15 && loadAmount > 150) {
-                            System.out.println("ERROR: Please enter load amount from '15-150'");
-                            continue;
-                        }
-
-                        else {
-                            sc.nextLine();
-                            System.out.print("Enter your cash payment: ");
-                            cashPayment = sc.nextDouble();
-
-                            if (cashPayment < loadAmount) {
-                                System.out.println("Your payment should not be less than in your load amount!");
-                                continue;
-                            } else {
-                                cashPayment -= loadAmount;
-                                System.out.println("Payment Successful\nYour change due is " + cashPayment);
-                                continue;
+                        if (prefixInt >= 1 && prefixInt <= 50) {
+                        
+                            while (loadSuccessful) {
+                                System.out.println("\nAvailable Product for GLOBE/TM");
+                                System.out.print("Enter Load Amount: ");
+                                loadAmount = sc.nextDouble();
+        
+                                if (loadAmount < 15 || loadAmount > 150) {
+                                    System.out.println("ERROR: Please enter load amount from '15-150'");
+                                    continue;
+                                }
+        
+                                else {
+                                    sc.nextLine();
+                                    System.out.print("Enter your cash payment: ");
+                                    cashPayment = sc.nextDouble();
+        
+                                    if (cashPayment < loadAmount) {
+                                        System.out.println("Your payment should not be less than in your load amount!");
+                                        continue;
+                                    } else {
+                                        cashPayment -= loadAmount;
+                                        System.out.println("Payment Successful\nYour change due is " + cashPayment);
+                                        loadSuccessful = false;
+                                    }
+                                }
                             }
                         }
+                        
+                        else if (prefixInt >= 51 && prefixInt <= 99) {
+                            
+                            while (loadSuccessful) {
+                                System.out.println("\nAvailable Product for SMART/TM");
+                                System.out.print("Enter Load Amount: ");
+                                loadAmount = sc.nextDouble();
+        
+                                if (loadAmount < 15 || loadAmount > 150) {
+                                    System.out.println("ERROR: Please enter load amount from '15-150'");
+                                    continue;
+                                }
+        
+                                else {
+                                    sc.nextLine();
+                                    System.out.print("Enter your cash payment: ");
+                                    cashPayment = sc.nextDouble();
+        
+                                    if (cashPayment < loadAmount) {
+                                        System.out.println("Your payment should not be less than in your load amount!");
+                                        continue;
+                                    } else {
+                                        cashPayment -= loadAmount;
+                                        System.out.println("Payment Successful\nYour change due is " + cashPayment);
+                                        loadSuccessful = false;
+                                    }
+                                }
+                             }
+                           } 
+                           
+                           else {
+                                System.out.println("ERROR: Unknown SIM Card");
+                                continue;
+                           }
                     }
-                }
-                
-                if (prefix >= 51 && prefix <= 99) {
                     
-                    while (!loadSuccessful) {
-                        System.out.println("\nAvailable Product for SMART/TM");
-                        System.out.print("Enter Load Amount: ");
-                        loadAmount = sc.nextDouble();
-
-                        if (loadAmount < 15 && loadAmount > 150) {
-                            System.out.println("ERROR: Please enter load amount from '15-150'");
-                            continue;
-                        }
-
-                        else {
-                            sc.nextLine();
-                            System.out.print("Enter your cash payment: ");
-                            cashPayment = sc.nextDouble();
-
-                            if (cashPayment < loadAmount) {
-                                System.out.println("Your payment should not be less than in your load amount!");
-                                continue;
-                            } else {
-                                cashPayment -= loadAmount;
-                                System.out.println("Payment Successful\nYour change due is " + cashPayment);
-                                continue;
-                            }
-                        }
                      }
-                   }
                }
 
                else if (userInput == 2) {
-                    loadSuccessful = true;
+                    programRunning = false;
                }
         }
 
         sc.close();
     }
 }
-    
-
